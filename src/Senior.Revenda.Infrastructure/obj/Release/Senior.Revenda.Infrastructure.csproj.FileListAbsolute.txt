@@ -1,5 +1,0 @@
-C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\bin\Release\Senior.Revenda.Infrastructure.dll
-C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\bin\Release\Senior.Revenda.Infrastructure.pdb
-C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\obj\Release\Senior.Revenda.Infrastructure.csproj.CoreCompileInputs.cache
-C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\obj\Release\Senior.Revenda.Infrastructure.dll
-C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\obj\Release\Senior.Revenda.Infrastructure.pdb
