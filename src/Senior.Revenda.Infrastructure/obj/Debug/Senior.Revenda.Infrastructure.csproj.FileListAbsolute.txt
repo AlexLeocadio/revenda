@@ -1,0 +1,6 @@
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\bin\Debug\Senior.Revenda.Infrastructure.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\bin\Debug\Senior.Revenda.Infrastructure.pdb
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\obj\Debug\Senior.Revenda.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\obj\Debug\Senior.Revenda.Infrastructure.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\obj\Debug\Senior.Revenda.Infrastructure.pdb
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Infrastructure\obj\Debug\Senior.Revenda.Infrastructure.csproj.AssemblyReference.cache

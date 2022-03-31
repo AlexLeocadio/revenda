@@ -1,0 +1,9 @@
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Business\bin\Release\Senior.Revenda.Business.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Business\bin\Release\Senior.Revenda.Business.pdb
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Business\bin\Release\Senior.Revenda.Contract.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Business\bin\Release\Senior.Revenda.Contract.pdb
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Business\obj\Release\Senior.Revenda.Business.csproj.AssemblyReference.cache
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Business\obj\Release\Senior.Revenda.Business.csproj.CoreCompileInputs.cache
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Business\obj\Release\Senior.Revenda.Business.csproj.CopyComplete
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Business\obj\Release\Senior.Revenda.Business.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Business\obj\Release\Senior.Revenda.Business.pdb

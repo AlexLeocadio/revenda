@@ -1,0 +1,30 @@
+﻿@model Senior.Revenda.Contract.DTOs.MarcaDTO
+@{
+    ViewBag.Title = "Cadastrar - Marca";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Marca <small>Cadastro</small></h3>
+    </div>
+    <div class="panel-body">
+        <form action="Cadastrar" method="post">
+            <div class="col-md-12 form-group">
+                @Html.LabelFor(m => m.Nome, new { @class = "col-md-2" })
+                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control col-md-10" })
+            </div>
+
+            <div class="col-md-12">
+                <hr />
+            </div>
+
+            <div class="col-md-offset-10">
+                <input type="button" class="btn btn-primary" onclick="Back()" value="Cancelar" />
+                <input type="submit" class="btn btn-success" value="Cadastrar" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/TypeScripts/GlobalScript.js"></script>

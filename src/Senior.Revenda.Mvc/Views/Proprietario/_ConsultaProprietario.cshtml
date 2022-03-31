@@ -1,0 +1,49 @@
+﻿@model Senior.Revenda.Contract.DTOs.Filter.ProprietarioFilterDTO
+@using Senior.Revenda.Contract.Enum
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Lista.Count() > 0)
+        {
+            foreach (var item in Model.Lista)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Documento)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Alterar", "Alterar", "Proprietario", new { id = item.Id }, null) |
+                        @if (item.Status == StatusEnum.Ativo)
+                        {
+                            <a onclick="CancelarProprietario('@Request.Url.Authority', '@item.Id')">Cancelar</a>
+                        }
+                        else
+                        {
+                            <a onclick="AtivarProprietario('@Request.Url.Authority', '@item.Id')">Ativar</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">Nenhum registro encontrado.</td>
+            </tr>
+        }
+    </tbody>
+</table>

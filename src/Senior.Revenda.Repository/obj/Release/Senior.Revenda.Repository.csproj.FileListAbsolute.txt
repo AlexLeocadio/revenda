@@ -1,0 +1,15 @@
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\Senior.Revenda.Repository.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\Senior.Revenda.Repository.pdb
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\AutoMapper.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\EntityFramework.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\EntityFramework.SqlServer.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\Senior.Revenda.Contract.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\Senior.Revenda.Contract.pdb
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\AutoMapper.xml
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\EntityFramework.xml
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\bin\Release\EntityFramework.SqlServer.xml
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\obj\Release\Senior.Revenda.Repository.csproj.AssemblyReference.cache
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\obj\Release\Senior.Revenda.Repository.csproj.CoreCompileInputs.cache
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\obj\Release\Senior.Revenda.Repository.csproj.CopyComplete
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\obj\Release\Senior.Revenda.Repository.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Repository\obj\Release\Senior.Revenda.Repository.pdb
