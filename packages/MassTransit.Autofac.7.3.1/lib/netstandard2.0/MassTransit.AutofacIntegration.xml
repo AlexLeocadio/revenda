@@ -1,0 +1,591 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MassTransit.AutofacIntegration</name>
+    </assembly>
+    <members>
+        <member name="T:MassTransit.AutofacIntegration.AutofacScopeConsumerFactory`2">
+            <summary>
+            Uses a lifetime scope registry to maintain separate containers based on a scopeId that is extracted from the message
+            </summary>
+            <typeparam name="TConsumer"></typeparam>
+            <typeparam name="TId"></typeparam>
+        </member>
+        <member name="M:MassTransit.AutofacIntegration.AutofacTestingExtensions.AddMassTransitInMemoryTestHarness(Autofac.ContainerBuilder,System.Action{MassTransit.AutofacIntegration.IContainerBuilderBusConfigurator})">
+            <summary>
+            Add the In-Memory test harness to the container, and configure it using the callback specified.
+            </summary>
+        </member>
+        <member name="T:MassTransit.AutofacIntegration.Bind`2">
+            <summary>
+            Bind is used to store types bound to their owner, such as an IBusControl to an IMyBus.
+            </summary>
+            <typeparam name="TKey">The key type</typeparam>
+            <typeparam name="TValue">The bound type</typeparam>
+        </member>
+        <member name="T:MassTransit.AutofacIntegration.ILifetimeScopeIdAccessor`2">
+            <summary>
+            Returns the scopeId from an input type
+            </summary>
+            <typeparam name="TInput">The input type</typeparam>
+            <typeparam name="TId">The scopeId type</typeparam>
+        </member>
+        <member name="M:MassTransit.AutofacIntegration.ILifetimeScopeIdAccessor`2.TryGetScopeId(`0,`1@)">
+            <summary>
+            Try to retrieve the scopeId from the input
+            </summary>
+            <param name="input">The input value</param>
+            <param name="id">The scopeId</param>
+            <returns></returns>
+        </member>
+        <member name="T:MassTransit.AutofacIntegration.ILifetimeScopeIdProvider`1">
+            <summary>
+            Used to obtain the lifetime scopeId for the given context
+            </summary>
+            <typeparam name="TId"></typeparam>
+        </member>
+        <member name="T:MassTransit.AutofacIntegration.ILifetimeScopeRegistry`1">
+            <summary>
+            A lifetime scope registry contains an indexed set of lifetime scopes that can be used on
+            a per-index basis as the root for additional lifetime scopes (per request, etc.)
+            </summary>
+        </member>
+        <member name="M:MassTransit.AutofacIntegration.ILifetimeScopeRegistry`1.GetLifetimeScope(`0)">
+            <summary>
+            Returns the lifetime scope for the specified scopeId
+            </summary>
+            <param name="scopeId">The scope identifier</param>
+            <returns>The lifetime scope</returns>
+        </member>
+        <member name="M:MassTransit.AutofacIntegration.ILifetimeScopeRegistry`1.ConfigureLifetimeScope(`0,MassTransit.AutofacIntegration.LifetimeScopeConfigurator{`0})">
+            <summary>
+            Specify the configuration method for a lifetime scope
+            </summary>
+            <param name="scopeId">The switch identifier</param>
+            <param name="configureCallback">The configuration action for the switch</param>
+        </member>
+        <member name="T:MassTransit.AutofacIntegration.LifetimeScopeConfigurator`1">
+            <summary>
+            Delegate to configure a lifetime scope
+            </summary>
+            <typeparam name="TId">The container registry identifier type</typeparam>
+            <param name="scopeId">The scopeId</param>
+            <param name="containerBuilder">The container builder which configures the lifetime scope</param>
+        </member>
+        <member name="E:MassTransit.AutofacIntegration.LifetimeScopeRegistry`1.ChildLifetimeScopeBeginning">
+            <summary>
+            Fired when a new scope based on the current scope is beginning.
+            </summary>
+        </member>
+        <member name="E:MassTransit.AutofacIntegration.LifetimeScopeRegistry`1.CurrentScopeEnding">
+            <summary>
+            Fired when this scope is ending.
+            </summary>
+        </member>
+        <member name="E:MassTransit.AutofacIntegration.LifetimeScopeRegistry`1.ResolveOperationBeginning">
+            <summary>
+            Fired when a resolve operation is beginning in this scope.
+            </summary>
+        </member>
+        <member name="M:MassTransit.AutofacIntegration.LifetimeScopeRegistry`1.GetCurrentScope">
+            <summary>
+            Uses the parent container content to find the scope to use
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MassTransit.AutofacIntegration.MessageLifetimeScopeIdProvider`2">
+            <summary>
+            Gets the LifetimeScope Id using the message
+            </summary>
+            <typeparam name="TMessage"></typeparam>
+            <typeparam name="TId"></typeparam>
+        </member>
+        <member name="T:MassTransit.AutofacIntegration.StringHeaderLifetimeScopeIdProvider">
+            <summary>
+            Uses a string-based header to identify the lifetime scope
+            </summary>
+        </member>
+        <member name="T:MassTransit.AutofacConsumerRegistrationExtensions">
+            <summary>
+            Extends <see cref="T:Autofac.ContainerBuilder" /> with methods to support MassTransit.
+            </summary>
+        </member>
+        <member name="M:MassTransit.AutofacConsumerRegistrationExtensions.RegisterConsumers(Autofac.ContainerBuilder,System.Reflection.Assembly[])">
+            <summary>
+            Register types that implement <see cref="T:MassTransit.IConsumer" /> in the provided assemblies.
+            </summary>
+            <param name="builder">The container builder.</param>
+            <param name="consumerAssemblies">Assemblies to scan for consumers.</param>
+            <returns>Registration builder allowing the consumer components to be customised.</returns>
+        </member>
+        <member name="M:MassTransit.AutofacConsumerRegistrationExtensions.RegisterSagas(Autofac.ContainerBuilder,System.Reflection.Assembly[])">
+            <summary>
+            Register types that implement <see cref="T:MassTransit.IConsumer" /> in the provided assemblies.
+            </summary>
+            <param name="builder">The container builder.</param>
+            <param name="sagaAssemblies">Assemblies to scan for consumers.</param>
+            <returns>Registration builder allowing the consumer components to be customised.</returns>
+        </member>
+        <member name="M:MassTransit.AutofacConsumerRegistrationExtensions.RegisterInMemorySagaRepository``1(Autofac.ContainerBuilder)">
+            <summary>
+            Register the InMemory saga repository for the specified saga type
+            </summary>
+            <param name="builder"></param>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:MassTransit.AutofacExtensions.UseLifetimeScope(GreenPipes.IPipeConfigurator{MassTransit.ConsumeContext},Autofac.ILifetimeScope,System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Creates a lifetime scope which is shared by any downstream filters (rather than creating a new one).
+            </summary>
+            <param name="configurator"></param>
+            <param name="lifetimeScope"></param>
+            <param name="name">The name of the lifetime scope</param>
+            <param name="configureScope">Configuration for scope container</param>
+        </member>
+        <member name="M:MassTransit.AutofacExtensions.UseMessageLifetimeScope(MassTransit.IConsumePipeConfigurator,Autofac.ILifetimeScope,System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Creates a service scope for each message type, compatible with UseMessageRetry and UseInMemoryOutbox
+            </summary>
+            <param name="configurator"></param>
+            <param name="lifetimeScope"></param>
+            <param name="name">The name of the lifetime scope</param>
+            <param name="configureScope">Configuration for scope container</param>
+        </member>
+        <member name="M:MassTransit.AutofacExtensions.RegisterLifetimeScopeIdAccessor``2(Autofac.ContainerBuilder,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Register an accessor for an input type in the container
+            </summary>
+            <typeparam name="TInput"></typeparam>
+            <typeparam name="T"></typeparam>
+            <param name="builder"></param>
+            <param name="propertyExpression"></param>
+        </member>
+        <member name="M:MassTransit.AutofacExtensions.RegisterLifetimeScopeRegistry``1(Autofac.ContainerBuilder,System.Object)">
+            <summary>
+            Register a lifetime scope registry for the given identifier type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="builder"></param>
+            <param name="scopeTag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacExtensions.CreateRequestClient``1(Autofac.ILifetimeScope,MassTransit.RequestTimeout)">
+            <summary>
+            Create a request client, using the specified service address, using the <see cref="T:MassTransit.IClientFactory" /> from the container.
+            </summary>
+            <param name="scope"></param>
+            <param name="timeout">The default timeout for requests</param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacExtensions.CreateRequestClient``1(Autofac.ILifetimeScope,System.Uri,MassTransit.RequestTimeout)">
+            <summary>
+            Create a request client, using the specified service address, using the <see cref="T:MassTransit.IClientFactory" /> from the container.
+            </summary>
+            <param name="scope"></param>
+            <param name="destinationAddress">The destination service address</param>
+            <param name="timeout">The default timeout for requests</param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacExtensions.RegisterGenericRequestClient(Autofac.ContainerBuilder)">
+            <summary>
+            Registers a generic request client provider in the container, which will be used for any
+            client that is not explicitly registered using AddRequestClient.
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UseConsumeFilter(MassTransit.IConsumePipeConfigurator,System.Type,MassTransit.AutofacIntegration.ILifetimeScopeProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.ConsumeContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="lifetimeScopeProvider">Lifetime Scope Provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UseConsumeFilter(MassTransit.IConsumePipeConfigurator,System.Type,MassTransit.Registration.IConfigurationServiceProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.ConsumeContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="provider">Configuration service provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UseSendFilter(MassTransit.ISendPipelineConfigurator,System.Type,MassTransit.AutofacIntegration.ILifetimeScopeProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.SendContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="lifetimeScopeProvider">Lifetime Scope Provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UseSendFilter(MassTransit.ISendPipelineConfigurator,System.Type,MassTransit.Registration.IConfigurationServiceProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.SendContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="provider">Configuration service provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UsePublishFilter(MassTransit.IPublishPipelineConfigurator,System.Type,MassTransit.AutofacIntegration.ILifetimeScopeProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.PublishContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="lifetimeScopeProvider">Lifetime Scope Provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UsePublishFilter(MassTransit.IPublishPipelineConfigurator,System.Type,MassTransit.Registration.IConfigurationServiceProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.PublishContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="provider">Configuration service provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UseExecuteActivityFilter(MassTransit.IConsumePipeConfigurator,System.Type,MassTransit.AutofacIntegration.ILifetimeScopeProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.Courier.ExecuteContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="lifetimeScopeProvider">Lifetime Scope Provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UseExecuteActivityFilter(MassTransit.IConsumePipeConfigurator,System.Type,MassTransit.Registration.IConfigurationServiceProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.Courier.ExecuteContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="provider">Configuration service provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UseCompensateActivityFilter(MassTransit.IConsumePipeConfigurator,System.Type,MassTransit.AutofacIntegration.ILifetimeScopeProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.Courier.CompensateContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="lifetimeScopeProvider">Lifetime Scope Provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacFilterExtensions.UseCompensateActivityFilter(MassTransit.IConsumePipeConfigurator,System.Type,MassTransit.Registration.IConfigurationServiceProvider)">
+            <summary>
+            Use scoped filter for <see cref="T:MassTransit.Courier.CompensateContext`1" />
+            </summary>
+            <param name="configurator"></param>
+            <param name="filterType">Filter type</param>
+            <param name="provider">Configuration service provider</param>
+        </member>
+        <member name="M:MassTransit.AutofacObserverExtensions.ConnectAutofacConsumeObserver(MassTransit.IConsumeObserverConnector)">
+            <summary>
+            Registers an <see cref="T:MassTransit.IConsumeObserver" /> which resolves the actual observer from the container lifetime scope
+            </summary>
+            <param name="connector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacObserverExtensions.ConnectAutofacConsumeObserver(MassTransit.IConsumeObserverConnector,Autofac.ILifetimeScope)">
+            <summary>
+            Registers an <see cref="T:MassTransit.IConsumeObserver" /> which resolves the actual observer from the container lifetime scope
+            </summary>
+            <param name="connector"></param>
+            <param name="lifetimeScope">The default lifetime scope</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacObserverExtensions.ConnectAutofacConsumeMessageObserver``1(MassTransit.Pipeline.IConsumeMessageObserverConnector)">
+            <summary>
+            Registers an <see cref="T:MassTransit.IConsumeMessageObserver`1" /> which resolves the actual observer from the container lifetime scope
+            </summary>
+            <typeparam name="T">The message type</typeparam>
+            <param name="connector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacObserverExtensions.ConnectAutofacConsumeMessageObserver``1(MassTransit.Pipeline.IConsumeMessageObserverConnector,Autofac.ILifetimeScope)">
+            <summary>
+            Registers an <see cref="T:MassTransit.IConsumeMessageObserver`1" /> which resolves the actual observer from the container lifetime scope
+            </summary>
+            <typeparam name="T">The message type</typeparam>
+            <param name="connector"></param>
+            <param name="lifetimeScope">The default lifetime scope</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Consumer``1(MassTransit.IReceiveEndpointConfigurator,Autofac.IComponentContext,System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Registers a consumer given the lifetime scope specified
+            </summary>
+            <typeparam name="T">The consumer type</typeparam>
+            <param name="configurator">The service bus configurator</param>
+            <param name="context">The LifetimeScope of the container</param>
+            <param name="name">The name of the scope created per-message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Consumer``1(MassTransit.IReceiveEndpointConfigurator,Autofac.ILifetimeScope,System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Registers a consumer given the lifetime scope specified
+            </summary>
+            <typeparam name="T">The consumer type</typeparam>
+            <param name="configurator">The service bus configurator</param>
+            <param name="scope">The LifetimeScope of the container</param>
+            <param name="name">The name of the scope created per-message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.ConsumerInScope``2(MassTransit.IReceiveEndpointConfigurator,Autofac.IComponentContext,System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Registers a consumer given the lifetime scope specified
+            </summary>
+            <typeparam name="T">The consumer type</typeparam>
+            <typeparam name="TId"></typeparam>
+            <param name="configurator">The service bus configurator</param>
+            <param name="context">The component context containing the registry</param>
+            <param name="name">The name of the scope created per-message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Consumer``1(MassTransit.IReceiveEndpointConfigurator,Autofac.IComponentContext,System.Action{MassTransit.ConsumeConfigurators.IConsumerConfigurator{``0}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Registers a consumer given the lifetime scope specified
+            </summary>
+            <typeparam name="T">The consumer type</typeparam>
+            <param name="configurator">The service bus configurator</param>
+            <param name="context">The LifetimeScope of the container</param>
+            <param name="configure"></param>
+            <param name="name">The name of the scope created per-message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Consumer``1(MassTransit.IReceiveEndpointConfigurator,Autofac.ILifetimeScope,System.Action{MassTransit.ConsumeConfigurators.IConsumerConfigurator{``0}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Registers a consumer given the lifetime scope specified
+            </summary>
+            <typeparam name="T">The consumer type</typeparam>
+            <param name="configurator">The service bus configurator</param>
+            <param name="scope">The LifetimeScope of the container</param>
+            <param name="configure"></param>
+            <param name="name">The name of the scope created per-message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Consumer``2(MassTransit.ConsumeConfigurators.IBatchConfigurator{``1},Autofac.ILifetimeScope,System.Action{MassTransit.ConsumeConfigurators.IConsumerMessageConfigurator{``0,MassTransit.Batch{``1}}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Connect a consumer with a consumer factory method
+            </summary>
+            <typeparam name="TConsumer"></typeparam>
+            <typeparam name="TMessage"></typeparam>
+            <param name="configurator"></param>
+            <param name="scope"></param>
+            <param name="configure"></param>
+            <param name="name">The name of the scope created per-message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Consumer``2(MassTransit.ConsumeConfigurators.IBatchConfigurator{``1},Autofac.IComponentContext,System.Action{MassTransit.ConsumeConfigurators.IConsumerMessageConfigurator{``0,MassTransit.Batch{``1}}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Connect a consumer with a consumer factory method
+            </summary>
+            <typeparam name="TConsumer"></typeparam>
+            <typeparam name="TMessage"></typeparam>
+            <param name="configurator"></param>
+            <param name="context"></param>
+            <param name="configure"></param>
+            <param name="name">The name of the scope created per-message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Saga``1(MassTransit.IReceiveEndpointConfigurator,Autofac.IComponentContext,System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Registers a saga using the container that has the repository resolved from the container
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configurator"></param>
+            <param name="context"></param>
+            <param name="name"></param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Saga``1(MassTransit.IReceiveEndpointConfigurator,Autofac.ILifetimeScope,System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Registers a saga using the container that has the repository resolved from the container
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configurator"></param>
+            <param name="scope"></param>
+            <param name="name"></param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Saga``1(MassTransit.IReceiveEndpointConfigurator,Autofac.IComponentContext,System.Action{MassTransit.ISagaConfigurator{``0}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Registers a saga using the container that has the repository resolved from the container
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configurator"></param>
+            <param name="context"></param>
+            <param name="configure"></param>
+            <param name="name"></param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.Saga``1(MassTransit.IReceiveEndpointConfigurator,Autofac.ILifetimeScope,System.Action{MassTransit.ISagaConfigurator{``0}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Registers a saga using the container that has the repository resolved from the container
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configurator"></param>
+            <param name="scope"></param>
+            <param name="configure"></param>
+            <param name="name"></param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.StateMachineSaga``1(MassTransit.IReceiveEndpointConfigurator,Automatonymous.SagaStateMachine{``0},Autofac.IComponentContext,System.Action{MassTransit.ISagaConfigurator{``0}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Subscribe a state machine saga to the endpoint
+            </summary>
+            <typeparam name="TInstance">The state machine instance type</typeparam>
+            <param name="configurator"></param>
+            <param name="stateMachine">The state machine</param>
+            <param name="context">The Autofac root container to resolve the repository</param>
+            <param name="configure">Optionally configure the saga</param>
+            <param name="name">The name to use for the scope created for each message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.StateMachineSaga``1(MassTransit.IReceiveEndpointConfigurator,Automatonymous.SagaStateMachine{``0},Autofac.ILifetimeScope,System.Action{MassTransit.ISagaConfigurator{``0}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Subscribe a state machine saga to the endpoint
+            </summary>
+            <typeparam name="TInstance">The state machine instance type</typeparam>
+            <param name="configurator"></param>
+            <param name="stateMachine">The state machine</param>
+            <param name="scope">The Autofac Lifetime container to resolve the repository</param>
+            <param name="configure">Optionally configure the saga</param>
+            <param name="name">The name to use for the scope created for each message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.StateMachineSaga``1(MassTransit.IReceiveEndpointConfigurator,Autofac.IComponentContext,System.Action{MassTransit.ISagaConfigurator{``0}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Subscribe a state machine saga to the endpoint
+            </summary>
+            <typeparam name="TInstance">The state machine instance type</typeparam>
+            <param name="configurator"></param>
+            <param name="context">The Autofac root container to resolve the repository</param>
+            <param name="configure">Optionally configure the saga</param>
+            <param name="name">The name to use for the scope created for each message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="M:MassTransit.AutofacReceiveEndpointExtensions.StateMachineSaga``1(MassTransit.IReceiveEndpointConfigurator,Autofac.ILifetimeScope,System.Action{MassTransit.ISagaConfigurator{``0}},System.String,System.Action{Autofac.ContainerBuilder,MassTransit.ConsumeContext})">
+            <summary>
+            Subscribe a state machine saga to the endpoint
+            </summary>
+            <typeparam name="TInstance">The state machine instance type</typeparam>
+            <param name="configurator"></param>
+            <param name="scope">The Autofac Lifetime Container to resolve the repository</param>
+            <param name="configure">Optionally configure the saga</param>
+            <param name="name">The name to use for the scope created for each message</param>
+            <param name="configureScope">Configuration for scope container</param>
+            <returns></returns>
+        </member>
+        <member name="T:MassTransit.AutofacRegistrationExtensions">
+            <summary>
+            Standard registration extensions, which are used to configure consumers, sagas, and activities on receive endpoints from a
+            dependency injection container.
+            </summary>
+        </member>
+        <member name="M:MassTransit.AutofacRegistrationExtensions.AddMassTransit(Autofac.ContainerBuilder,System.Action{MassTransit.AutofacIntegration.IContainerBuilderBusConfigurator})">
+            <summary>
+            Adds the required services to the service collection, and allows consumers to be added and/or discovered
+            </summary>
+            <param name="builder"></param>
+            <param name="configure"></param>
+        </member>
+        <member name="M:MassTransit.AutofacRegistrationExtensions.AddMediator(Autofac.ContainerBuilder,System.Action{MassTransit.AutofacIntegration.IContainerBuilderMediatorConfigurator})">
+            <summary>
+            Adds the required services to the service collection, and allows consumers to be added and/or discovered
+            </summary>
+            <param name="builder"></param>
+            <param name="configure"></param>
+        </member>
+        <member name="M:MassTransit.AutofacRegistrationExtensions.AddConsumersFromContainer(MassTransit.IRegistrationConfigurator,Autofac.IComponentContext)">
+            <summary>
+            Add consumers that were already added to the container to the registration
+            </summary>
+        </member>
+        <member name="M:MassTransit.AutofacRegistrationExtensions.AddSagasFromContainer(MassTransit.IRegistrationConfigurator,Autofac.IComponentContext)">
+            <summary>
+            Add sagas that were already added to the container to the registration
+            </summary>
+        </member>
+        <member name="M:MassTransit.AutofacStateMachineRegisterSagaExtensions.RegisterSagaStateMachine(Autofac.ContainerBuilder,System.Type)">
+            <summary>
+            Add the state machine sagas in the specified assembly to the service collection
+            </summary>
+            <param name="builder"></param>
+            <param name="type">The state machine saga type</param>
+        </member>
+        <member name="M:MassTransit.AutofacStateMachineRegisterSagaExtensions.RegisterSagaStateMachine``2(Autofac.ContainerBuilder)">
+            <summary>
+            Add the state machine sagas in the specified assembly to the service collection
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:MassTransit.AutofacStateMachineRegisterSagaExtensions.RegisterSagaStateMachines(Autofac.ContainerBuilder,System.Reflection.Assembly[])">
+            <summary>
+            Add the state machine sagas in the specified assembly to the service collection
+            </summary>
+            <param name="builder"></param>
+            <param name="assemblies">If specified, only the specified assemblies are scanned</param>
+        </member>
+        <member name="M:MassTransit.AutofacStateMachineRegisterSagaExtensions.RegisterSagaStateMachines(Autofac.ContainerBuilder,System.Type[])">
+            <summary>
+            Add the state machine sagas by type
+            </summary>
+            <param name="builder"></param>
+            <param name="types">If specified, only the specified assemblies are scanned</param>
+        </member>
+        <member name="M:MassTransit.Transactions.AutofacTransactionExtensions.AddTransactionalEnlistmentBus(MassTransit.AutofacIntegration.IContainerBuilderBusConfigurator)">
+            <summary>
+            Adds <see cref="T:MassTransit.Transactions.ITransactionalBus"/> to the container with singleton lifetime, which can be used instead of <see cref="T:MassTransit.IBus"/> to enlist
+            published/sent messages in the current transaction. It isn't truly transactional, but delays the messages until
+            the transaction being to commit. This has a very limited purpose and is not meant for general use.
+            </summary>
+        </member>
+        <member name="M:MassTransit.Transactions.AutofacTransactionExtensions.AddTransactionalBus(MassTransit.AutofacIntegration.IContainerBuilderBusConfigurator)">
+            <summary>
+            Adds <see cref="T:MassTransit.Transactions.ITransactionalBus"/> to the container with scoped lifetime, which can be used to release the messages to the bus
+            immediately after a transaction commit. This has a very limited purpose and is not meant for general use.
+            It is recommended this is scoped within a unit of work (e.g. Http Request)
+            </summary>
+        </member>
+        <member name="T:MassTransit.AutofacMultiBusRegistrationExtensions">
+            <summary>
+            Support for multiple bus instances in a single container. This is an advanced concept. Review the documentation
+            for details on the constraints and known limitations of this approach.
+            </summary>
+        </member>
+        <member name="M:MassTransit.AutofacMultiBusRegistrationExtensions.AddMassTransit``1(Autofac.ContainerBuilder,System.Action{MassTransit.AutofacIntegration.MultiBus.IContainerBuilderBusConfigurator{``0}})">
+            <summary>
+            Configure a MassTransit bus instance, using the specified <typeparamref name="TBus" /> bus type, which must inherit directly from <see cref="T:MassTransit.IBus" />.
+            A dynamic type will be created to support the bus instance, which will be initialized when the <typeparamref name="TBus" /> type is retrieved
+            from the container.
+            </summary>
+            <param name="containerBuilder">The container builder</param>
+            <param name="configure">Bus instance configuration method</param>
+        </member>
+        <member name="M:MassTransit.AutofacTransactionExtensions.AddTransactionalEnlistmentBus``1(MassTransit.AutofacIntegration.MultiBus.IContainerBuilderBusConfigurator{``0})">
+            <summary>
+            Adds <see cref="T:MassTransit.Transactions.ITransactionalBus" /> to the container with singleton lifetime, which can be used instead of <see cref="T:MassTransit.IBus" /> to enlist
+            published/sent messages in the current transaction. It isn't truly transactional, but delays the messages until
+            the transaction being to commit. This has a very limited purpose and is not meant for general use.
+            </summary>
+        </member>
+        <member name="M:MassTransit.AutofacTransactionExtensions.AddTransactionalBus``1(MassTransit.AutofacIntegration.MultiBus.IContainerBuilderBusConfigurator{``0})">
+            <summary>
+            Adds <see cref="T:MassTransit.Transactions.ITransactionalBus" /> to the container with scoped lifetime, which can be used to release the messages to the bus
+            immediately after a transaction commit. This has a very limited purpose and is not meant for general use.
+            It is recommended this is scoped within a unit of work (e.g. Http Request)
+            </summary>
+        </member>
+    </members>
+</doc>

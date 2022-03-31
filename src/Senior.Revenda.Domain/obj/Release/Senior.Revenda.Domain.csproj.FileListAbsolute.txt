@@ -1,0 +1,16 @@
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\Senior.Revenda.Domain.dll.config
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\Senior.Revenda.Domain.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\Senior.Revenda.Domain.pdb
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\Newtonsoft.Json.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\Senior.Revenda.Contract.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\Senior.Revenda.Infrastructure.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\System.Net.Http.Formatting.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\Senior.Revenda.Contract.pdb
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\Senior.Revenda.Infrastructure.pdb
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\Newtonsoft.Json.xml
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\bin\Release\System.Net.Http.Formatting.xml
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\obj\Release\Senior.Revenda.Domain.csproj.AssemblyReference.cache
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\obj\Release\Senior.Revenda.Domain.csproj.CoreCompileInputs.cache
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\obj\Release\Senior.Revenda.Domain.csproj.CopyComplete
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\obj\Release\Senior.Revenda.Domain.dll
+C:\Sistemas\Revenda\Application\Revenda\src\Senior.Revenda.Domain\obj\Release\Senior.Revenda.Domain.pdb

@@ -1,0 +1,42 @@
+﻿@model Senior.Revenda.Contract.DTOs.Filter.MarcaFilterDTO
+@using Senior.Revenda.Contract.Enum 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Lista.Count() > 0)
+        {
+            foreach (var item in Model.Lista)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @if (item.Status == StatusEnum.Ativo)
+                        {
+                            <a onclick="CancelarMarca('@Request.Url.Authority', '@item.Id')">Cancelar</a>
+                        }
+                        else
+                        {
+                            <a onclick="AtivarMarca('@Request.Url.Authority', '@item.Id')">Ativar</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">Nenhum registro encontrado.</td>
+            </tr>
+        }
+    </tbody>
+</table>
